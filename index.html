@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>পড়াসাথী · StudyMate</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6ff;--card:#fff;--ink:#1d2140;--mute:#6a6f94;--brand:#5b4bff;--brand2:#00b8a9;--line:#e2e5f7;--soft:#eceaff;--shadow:0 8px 30px rgba(60,50,160,.10);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1226;--card:#191d3a;--ink:#eef0ff;--mute:#9aa0cc;--line:#2a2f58;--soft:#262a55;--shadow:0 8px 30px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1226;--card:#191d3a;--ink:#eef0ff;--mute:#9aa0cc;--line:#2a2f58;--soft:#262a55;--shadow:0 8px 30px rgba(0,0,0,.4);color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri","Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo i{font-style:normal;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:var(--shadow)}
+.logo b{font-size:20px;display:block;line-height:1.1}.logo small{color:var(--mute);font-size:12px}
+.lang{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;color:var(--mute);padding:6px 14px;border-radius:999px;font:700 14px inherit;font-family:inherit;cursor:pointer}
+.lang button.on{background:var(--brand);color:#fff}
+.hero{background:linear-gradient(135deg,var(--brand),#8a5bff 60%,var(--brand2));color:#fff;border-radius:22px;padding:18px 20px;margin-bottom:14px;box-shadow:var(--shadow)}
+.hero h1{margin:0 0 4px;font-size:22px}.hero p{margin:0;opacity:.92;font-size:14px}
+nav{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+nav button{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px 4px;cursor:pointer;color:var(--ink);font-family:inherit;font-weight:700;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s}
+nav button span{font-size:22px}
+nav button.on{border-color:var(--brand);background:var(--soft);transform:translateY(-2px)}
+.panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+.panel.on{display:block}
+.panel h2{margin:0 0 2px;font-size:18px}.panel .sub{color:var(--mute);font-size:13px;margin:0 0 12px}
+textarea,select{width:100%;border:2px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink);font:500 16px "Hind Siliguri","Nunito",sans-serif;padding:12px}
+textarea{min-height:110px;resize:vertical}
+textarea:focus,select:focus{outline:none;border-color:var(--brand)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.btn{border:0;border-radius:14px;padding:12px 20px;font:700 16px "Hind Siliguri","Nunito",sans-serif;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--brand),#8a5bff);box-shadow:0 6px 16px rgba(91,75,255,.35)}
+.btn:disabled{opacity:.6;cursor:wait}
+.ghost{background:var(--soft);color:var(--ink);box-shadow:none;padding:10px 14px;font-size:14px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{border:1px dashed var(--brand);color:var(--brand);background:none;border-radius:999px;padding:4px 12px;font:600 13px inherit;font-family:inherit;cursor:pointer}
+.prev{display:none;position:relative;margin-top:10px}.prev img{max-width:100%;max-height:200px;border-radius:12px;border:2px solid var(--line)}
+.prev button{position:absolute;top:6px;left:6px;border:0;border-radius:50%;width:28px;height:28px;background:#000a;color:#fff;cursor:pointer}
+.out{margin-top:14px;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:none;overflow-x:auto;word-wrap:break-word}
+.out h3{margin:12px 0 4px;color:var(--brand);font-size:17px}.out p{margin:6px 0}.out ul,.out ol{margin:6px 0;padding-left:22px}
+.out strong{color:var(--brand2)}
+.note{text-align:center;color:var(--mute);font-size:12px;margin:16px 0 4px}
+.err{color:#d6336c;font-weight:600}
+</style>
+<link rel="manifest" href="/manifest.json"><link rel="icon" href="/icon.svg"><meta name="theme-color" content="#5b4bff">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="logo"><i>🎓</i><div><b>পড়াসাথী</b><small>StudyMate · Class 6</small></div></div>
+  <div class="lang"><button id="lbn" class="on">বাংলা</button><button id="len">EN</button></div>
+</header>
+<div class="hero"><h1 data-i="hero"></h1><p data-i="herop"></p></div>
+<nav id="nav"></nav>
+<div id="panels"></div>
+<p class="note" data-i="note"></p>
+</div>
+<script>
+const T={
+bn:{hero:"আজ কী শিখবে? 🚀",herop:"ষষ্ঠ শ্রেণির সব বিষয়ে তোমার নিজস্ব এআই শিক্ষক — বাংলা ও ইংরেজি দুই ভাষায়।",note:"এআই ভুল করতে পারে — পরীক্ষার আগে পাঠ্যবই ও শিক্ষকের সাথে মিলিয়ে নাও।",go:"উত্তর দাও ✨",thinking:"ভাবছি…",copy:"কপি",copied:"কপি হয়েছে ✓",photo:"📷 ছবি দাও",
+chapter:["অধ্যায়","সহজ সারসংক্ষেপ, মূল পয়েন্ট ও পড়ার পরামর্শ","বইয়ের পাতার ছবি দাও অথবা অধ্যায়ের নাম লেখো…","পাঠ্যবইয়ের পাতা বা অধ্যায় থেকে সারসংক্ষেপ ও স্টাডি প্ল্যান পাবে।",["বিজ্ঞান: জীবজগৎ","গণিত: ভগ্নাংশ","বাংলাদেশ ও বিশ্বপরিচয়: মুক্তিযুদ্ধ"]],
+math:["গণিত","ধাপে ধাপে সহজ সমাধান","অঙ্কটি এখানে লেখো অথবা ছবি তোলো…","প্রতিটি ধাপ ব্যাখ্যাসহ বুঝিয়ে দেওয়া হবে।",["৩/৪ + ২/৫ = ?","১২ জন শ্রমিক ১৫ দিনে কাজ করে। ১৮ জন কত দিনে করবে?","একটি আয়তের দৈর্ঘ্য ১২ মি., প্রস্থ ৮ মি.। ক্ষেত্রফল কত?"]],
+write:["লেখা","রচনা, অনুচ্ছেদ, চিঠি, আবেদন ও অনুবাদ","কী নিয়ে লিখবে? (যেমন: আমার প্রিয় শিক্ষক)","ষষ্ঠ শ্রেণির উপযোগী সহজ ভাষায় লেখা পাবে।",["আমার বাংলাদেশ","ছুটির আবেদন","A Visit to a Village"],["অনুচ্ছেদ","রচনা","চিঠি","আবেদন","অনুবাদ (বাংলা↔ইংরেজি)","ইমেইল"],"ভাষা",["বাংলায় লেখো","Write in English"]],
+qa:["প্রশ্নোত্তর","যেকোনো বিষয়ের প্রশ্ন ও পরীক্ষার প্রস্তুতি","তোমার প্রশ্ন লেখো…","বিজ্ঞান, গণিত, ইংরেজি, বাংলা, বাংলাদেশ ও বিশ্বপরিচয়, ধর্ম — সব বিষয়ে।",["সালোকসংশ্লেষণ কী?","Present Perfect Tense কী?","এই অধ্যায় থেকে ৫টি MCQ দাও"]]},
+en:{hero:"What will you learn today? 🚀",herop:"Your personal AI tutor for every Class 6 subject, in Bangla and English.",note:"AI can make mistakes — check with your textbook and teacher before exams.",go:"Help me ✨",thinking:"Thinking…",copy:"Copy",copied:"Copied ✓",photo:"📷 Add photo",
+chapter:["Chapter","Easy summary, key points and study tips","Add a photo of your textbook page, or type a chapter name…","Get a summary and study plan from any textbook page or chapter.",["Science: Living things","Math: Fractions","BGS: Liberation War"]],
+math:["Math","Step-by-step solutions","Type your problem or take a photo…","Every step is explained clearly.",["3/4 + 2/5 = ?","12 workers finish a job in 15 days. How long will 18 workers take?","A rectangle is 12 m by 8 m. Find its area."]],
+write:["Writing","Essays, paragraphs, letters, applications, translations","What should we write about? (e.g. My favourite teacher)","Get Class 6 level writing in simple language.",["My Country Bangladesh","Application for leave","একটি গ্রামের দৃশ্য"],["Paragraph","Essay","Letter","Application","Translation (BN↔EN)","Email"],"Language",["বাংলায় লেখো","Write in English"]],
+qa:["Q&A","Ask anything · exam prep","Type your question…","Science, Math, English, Bangla, BGS, Religion — all subjects.",["What is photosynthesis?","Explain the Present Perfect tense","Give me 5 MCQs on this chapter"]]}};
+const MODES=["chapter","math","write","qa"],ICON={chapter:"📘",math:"🧮",write:"✍️",qa:"💡"},IMG={chapter:1,math:1,qa:1};
+let lang="bn",sample=null,canImg=false;const files={};
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function md(t){let h=esc(t).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>"),o="",L=null;const cl=()=>{if(L){o+="</"+L+">";L=null}};
+for(const l of h.split("\n")){let m;
+if(m=l.match(/^#{1,3}\s+(.*)/)){cl();o+="<h3>"+m[1]+"</h3>"}
+else if(m=l.match(/^\s*[-*•]\s+(.*)/)){if(L!="ul"){cl();o+="<ul>";L="ul"}o+="<li>"+m[1]+"</li>"}
+else if(m=l.match(/^\s*\d+[.)]\s+(.*)/)){if(L!="ol"){cl();o+="<ol>";L="ol"}o+="<li>"+m[1]+"</li>"}
+else if(l.trim()){cl();o+="<p>"+l+"</p>"}else cl()}cl();return o}
+function build(){
+$("#nav").innerHTML=MODES.map(m=>`<button data-m="${m}"><span>${ICON[m]}</span><em data-n="${m}" style="font-style:normal"></em></button>`).join("");
+$("#panels").innerHTML=MODES.map(m=>`<section class="panel" id="p-${m}">
+<h2 data-t="${m}"></h2><p class="sub" data-s="${m}"></p>
+${m=="write"?`<div class="row" style="margin:0 0 10px"><select id="wt" style="flex:1"></select><select id="wl" style="flex:1"></select></div>`:""}
+<textarea id="x-${m}"></textarea>
+<div class="prev" id="pv-${m}"><img alt=""><button aria-label="remove">✕</button></div>
+<div class="chips" data-c="${m}"></div>
+<div class="row">${IMG[m]?`<label class="btn ghost imgbtn" style="display:none" data-ib="${m}"><span data-ph></span><input type="file" accept="image/*" hidden data-f="${m}"></label>`:""}
+<button class="btn" data-go="${m}"></button><button class="btn ghost" data-cp="${m}" style="display:none"></button></div>
+<div class="out" id="o-${m}" aria-live="polite"></div></section>`).join("");
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>show(b.dataset.m));
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>run(b.dataset.go));
+document.querySelectorAll("[data-cp]").forEach(b=>b.onclick=()=>{const m=b.dataset.cp;navigator.clipboard?.writeText($("#o-"+m).innerText).then(()=>{b.textContent=T[lang].copied;setTimeout(()=>b.textContent=T[lang].copy,1500)}).catch(()=>{})});
+document.querySelectorAll("[data-f]").forEach(i=>i.onchange=()=>{const m=i.dataset.f,f=i.files[0];if(!f)return;files[m]=f;const pv=$("#pv-"+m);pv.querySelector("img").src=URL.createObjectURL(f);pv.style.display="block"});
+document.querySelectorAll(".prev button").forEach(b=>b.onclick=()=>{const m=b.parentNode.id.slice(3);delete files[m];b.parentNode.style.display="none"});
+show("chapter");apply()}
+function show(m){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.m==m));document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id=="p-"+m))}
+function apply(){const t=T[lang];document.documentElement.lang=lang;
+document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t[e.dataset.i]);
+MODES.forEach(m=>{const d=t[m];$(`[data-n="${m}"]`).textContent=d[0];$(`[data-t="${m}"]`).textContent=ICON[m]+" "+d[0];$(`[data-s="${m}"]`).textContent=d[1];
+$("#x-"+m).placeholder=d[2];$(`[data-go="${m}"]`).textContent=t.go;const c=$(`[data-cp="${m}"]`);c.textContent=t.copy;
+$(`[data-c="${m}"]`).innerHTML=d[4].map(x=>`<button class="chip">${esc(x)}</button>`).join("");
+$(`[data-c="${m}"]`).querySelectorAll(".chip").forEach(b=>b.onclick=()=>{$("#x-"+m).value=b.textContent;$("#x-"+m).focus()});
+const ib=$(`[data-ib="${m}"] [data-ph]`);if(ib)ib.textContent=t.photo});
+const w=t.write;$("#wt").innerHTML=w[5].map((x,i)=>`<option value="${i}">${x}</option>`).join("");$("#wl").innerHTML=w[7].map((x,i)=>`<option value="${i}">${x}</option>`).join("");
+$("#lbn").classList.toggle("on",lang=="bn");$("#len").classList.toggle("on",lang=="en")}
+function shrink(f){return new Promise((ok,no)=>{const i=new Image();i.onload=()=>{const k=Math.min(1,1280/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);ok(c.toDataURL("image/jpeg",.8))};i.onerror=no;i.src=URL.createObjectURL(f)})}
+async function run(m){const x=$("#x-"+m).value.trim(),t=T[lang],o=$("#o-"+m),btn=$(`[data-go="${m}"]`);
+if(!x&&!files[m]){$("#x-"+m).focus();return}
+btn.disabled=true;btn.textContent=t.thinking;o.style.display="block";o.innerHTML="<p>"+t.thinking+"</p>";
+const E={limit:["আজকের সীমা শেষ। কাল আবার এসো! 🌙","Today's limit is over. Come back tomorrow! 🌙"],global:["আজ অনেকে ব্যবহার করছে। একটু পরে চেষ্টা করো।","Very busy today. Please try later."],other:["কিছু একটা ভুল হয়েছে। আবার চেষ্টা করো।","Something went wrong. Please try again."]};
+try{const body={mode:m,lang,text:x};if(m=="write"){body.wtype=+$("#wt").value;body.wlang=+$("#wl").value}
+if(files[m])body.image=await shrink(files[m]);
+const r=await fetch("/api/ask",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+const d=await r.json();if(!r.ok)throw d;
+o.innerHTML=md(d.text);$(`[data-cp="${m}"]`).style.display="inline-block"}
+catch(e){const k=e.error=="user"?"limit":e.error=="global"?"global":"other";o.innerHTML='<p class="err">'+E[k][lang=="bn"?0:1]+"</p>"}
+btn.disabled=false;btn.textContent=t.go}
+$("#lbn").onclick=()=>{lang="bn";apply()};$("#len").onclick=()=>{lang="en";apply()};
+build();
+document.querySelectorAll(".imgbtn").forEach(e=>e.style.display="inline-block");
+</script>
+</body>
+</html>
